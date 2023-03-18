@@ -47,4 +47,37 @@
 \usepackage[papersize={216mm,279mm},tmargin=30mm,bmargin=25mm,lmargin=30mm,rmargin=20mm, heightrounded=true]{geometry}
 \setlength{\headheight}{52pt}
 
+% Customize the table of contents
+\usepackage[titles]{tocloft}
 
+% General language and symbol settings
+\RequirePackage[T1]{fontenc}
+
+% generacion de acronimos
+\usepackage{acronym}
+
+% Images & Drawing
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+
+% Math and Symbols
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{eurosym}
+
+% Insercion de codigo
+\RequirePackage{algorithm}
+\RequirePackage[noend]{algpseudocode}
+\RequirePackage{algorithmicx}
+\RequirePackage{minted}
+\usemintedstyle{borland}
+\newcounter{lstlisting}
+%\usepackage{listings}
+
+% Break URLs at hyphen and url
+\RequirePackage[hyphens]{url}
+\RequirePackage{hyperref}
+
+%table
+\RequirePackage{longtable}
