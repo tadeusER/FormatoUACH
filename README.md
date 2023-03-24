@@ -181,3 +181,23 @@ pdflatex <nombre_del_documento.tex> --shell-escape
 Reemplaza `<nombre_del_documento.tex>` con el nombre de tu archivo `.tex`, para copilar el documento en windows utilice miktex.
 
 Tenga en cuenta que si su documento utiliza paquetes adicionales que no están incluidos en la instalación básica de MiKTeX, es posible que deba instalarlos manualmente antes de compilar su archivo de LaTeX. Puede hacer esto utilizando el Administrador de Paquetes de MiKTeX, que se puede encontrar en el menú Inicio de Windows después de instalar MiKTeX.
+
+
+## 7. Para realizar aportes al formato
+para realizar aportes al formato de la universidad debera seguir las siguientes instrucciones:
+
+1. Clonar el repositorio: Para colaborar en el proyecto, es necesario clonar el repositorio en su propia computadora utilizando un cliente de Git como Git Bash o GitHub Desktop.
+
+2. Crear una branch o fork: Una vez que el repositorio esté en su propia computadora, debe crear una nueva branch o un fork de la rama develop en la que trabajará para realizar sus aportes. Esto le permitirá trabajar en su propia versión del proyecto sin afectar la rama principal.
+
+3. Realizar el aporte: Una vez que haya creado su propia branch o fork, puede comenzar a trabajar en el proyecto. Realice los cambios que desee hacer en el código, agregue nuevos archivos, modifique la documentación, etc.
+
+4. Hacer un commit: Una vez que haya terminado de hacer los cambios, debe hacer un commit en su propia branch o fork para guardar los cambios que realizó.
+
+5. Crear un pull request: Después de realizar el commit, debe crear un pull request en la rama develop del repositorio original. Un pull request es una solicitud para fusionar los cambios que hizo en su propia branch o fork con la rama develop del repositorio original. Para hacer esto, debe abrir el repositorio en la plataforma que esté utilizando (GitHub, GitLab, etc.) y hacer clic en el botón "New pull request" o "Create pull request" y seleccionar su branch o fork como la rama que desea fusionar con la rama develop del repositorio original.
+
+6. Esperar la revisión: Una vez que haya enviado su pull request, el propietario del repositorio o los colaboradores revisarán sus cambios y pueden hacer comentarios o solicitar cambios adicionales antes de fusionar la branch o fork con la rama develop. Debe estar pendiente de los comentarios y realizar los cambios necesarios hasta que los revisores estén satisfechos con los cambios que ha realizado.
+
+7. Fusión de la branch o fork: Si sus cambios son aceptados, su branch o fork se fusionará con la rama develop del repositorio original. De lo contrario, puede continuar haciendo cambios y enviando pull requests hasta que sus aportes sean aceptados.
+
+Los releases se realizaran cada 3 meses, para que los usuarios puedan tener acceso a las ultimas versiones del formato.
