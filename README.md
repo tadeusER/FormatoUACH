@@ -1,6 +1,6 @@
 
 
-# Uso del archivo de clase personalizado (custompresentation.cls) en LaTeX
+# Uso del formato UACH en LaTeX
 
 Para utilizar el formato de clase personalizado (`.cls`) en un documento LaTeX (`.tex`), primero debes importar este repositorio en la carpeta deseada utilizando Git submódulos. A continuación, se describen los pasos para realizar este proceso:
 
@@ -13,7 +13,7 @@ git submodule add <URL_del_repositorio> <nombre_de_la_carpeta>
 
 Reemplaza `<URL_del_repositorio>` con la URL del repositorio que contiene el archivo `.cls` personalizado y `<nombre_de_la_carpeta>` con el nombre de la carpeta donde deseas importar el repositorio.
 
-## 2. Actualizar el submódulo
+### 1.2 Actualizar el submódulo
 
 Después de agregar el repositorio como un submódulo, actualízalo para asegurarte de que se descarguen todos los archivos, para obtener los últimos cambios. Sigue estos pasos para actualizar los submódulos:
 
@@ -24,7 +24,7 @@ git submodule update --remote --merge
 ```
 Este comando actualiza todos los submódulos a sus últimas versiones disponibles en el repositorio remoto.
 
-## 3. Importar el archivo para una presentacion
+## 2. Importar el archivo para una presentacion
 Para crear una presentacion utlizando el formato de la universidad guiese por el siguiente ejemplo:
 
 ```
@@ -61,7 +61,7 @@ Para crear una presentacion utlizando el formato de la universidad guiese por el
 
 \end{document}
 ```
-## 4. Importar el archivo para un articulo
+## 3. Importar el archivo para un articulo
 Para crear un articulo utlizando el formato de la universidad guiese por el siguiente ejemplo:
 
 ``` 
@@ -94,7 +94,7 @@ Para crear un articulo utlizando el formato de la universidad guiese por el sigu
 \end{document}
 
 ```
-## 5. Importar el archivo para un informe
+## 4. Importar el archivo para un informe
 Para crear un informe utlizando el formato de la universidad guiese por el siguiente ejemplo:
 
 ```
@@ -139,7 +139,7 @@ Para crear un informe utlizando el formato de la universidad guiese por el sigui
 
 \end{document}
 ```
-## 6. Importar el archivo para un articulo IEEE
+## 5. Importar el archivo para un articulo IEEE
 Para crear un articulo IEEE guiese por el siguiente ejemplo:
 
 ```
@@ -174,7 +174,7 @@ Para crear un articulo IEEE guiese por el siguiente ejemplo:
 
 ```
 
-## 7. Compilar el documento
+## 6. Compilar el documento
 Puedes utilizar el siguiente comando en la terminal para compilar el documento:
 ``` 
 pdflatex <nombre_del_documento.tex> --shell-escape
