@@ -139,9 +139,44 @@ Para crear un informe utlizando el formato de la universidad guiese por el sigui
 
 \end{document}
 ```
-## 6. Compilar el documento
+## 6. Importar el archivo para un articulo IEEE
+Para crear un articulo IEEE guiese por el siguiente ejemplo:
+
+```
+\documentclass[conference]{IEEEtran}
+% Asegúrese de que el archivo IEEEtran.cls esté en la misma carpeta que su archivo .tex
+
+% Puede agregar cualquier paquete adicional que necesite aquí
+\usepackage{lipsum} % Solo para fines de demostración, agregando texto de muestra
+
+\title{Título del artículo}
+\author{Nombre del autor}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  \lipsum[1]
+\end{abstract}
+
+\section{Introducción}
+\lipsum[2-3]
+
+\section{Contenido}
+\lipsum[4-6]
+
+\section{Conclusión}
+\lipsum[7]
+
+\end{document}
+
+```
+
+## 7. Compilar el documento
 Puedes utilizar el siguiente comando en la terminal para compilar el documento:
 ``` 
 pdflatex <nombre_del_documento.tex> --shell-escape
 ```
-```
+Reemplaza `<nombre_del_documento.tex>` con el nombre de tu archivo `.tex`.
