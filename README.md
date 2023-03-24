@@ -178,4 +178,6 @@ Puedes utilizar el siguiente comando en la terminal para compilar el documento:
 ``` 
 pdflatex <nombre_del_documento.tex> --shell-escape
 ```
-Reemplaza `<nombre_del_documento.tex>` con el nombre de tu archivo `.tex`.
+Reemplaza `<nombre_del_documento.tex>` con el nombre de tu archivo `.tex`, para copilar el documento en windows utilice miktex.
+
+Tenga en cuenta que si su documento utiliza paquetes adicionales que no están incluidos en la instalación básica de MiKTeX, es posible que deba instalarlos manualmente antes de compilar su archivo de LaTeX. Puede hacer esto utilizando el Administrador de Paquetes de MiKTeX, que se puede encontrar en el menú Inicio de Windows después de instalar MiKTeX.
