@@ -6,15 +6,15 @@
 %
 % ============================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{settings/uach}
+\ProvidesClass{reportuach}
 
 \RequirePackage{kvoptions}[2010/12/23]%Este paquete está destinado a los autores de paquetes que desean utilizar opciones en formato de valor clave para sus opciones de paquete.
 % Conditional commands
 \RequirePackage{ifthen}%paquetes con commandos condicionales
 %\ifthenelse{test}{then}{else}
 \SetupKeyvalOptions{
-	family=uach,
-	prefix=uach@
+	family=reportuach,
+	prefix=reportuach@
 }
 % Set English as default language
 \DeclareStringOption[]{language}[english]
