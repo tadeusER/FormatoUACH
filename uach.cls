@@ -18,8 +18,6 @@
 }
 % Set English as default language
 \DeclareStringOption[]{language}[english]
-% Set Master Thesis as default document type
-\DeclareStringOption[]{TypeDocs}[report]
 
 % Set Master Thesis as default document type
 \DeclareStringOption[]{thesis}[master]
@@ -39,6 +37,24 @@
 
 % Process options
 \ProcessKeyvalOptions*
+% if TypeDocs is article return IEEEtran.cls, else if presentation return beamer.cls, else if report return report.cls and set options example: language=spanish, TypeDocs=article, thesis=master, supervisor=professor, chair=statistics, license=CC-BY-NC-SA, multiauthor=true
+\ifthenelse{
+	\equal{uach@TypeDocs}{article}}{
+			\RequireClass{IEEEtran}
+}
+{
+\ifthenelse{
+	\equal{uach@TypeDocs}{presentation}}{
+		\RequireClass{beamer}
+}
+	{
+		\RequireClass{report}
+	}
+}
+
+
+
+
 
 \LoadClass[a4paper,12pt]{report}
 
