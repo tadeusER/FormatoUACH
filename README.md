@@ -98,7 +98,7 @@ Para crear un articulo utlizando el formato de la universidad guiese por el sigu
 Para crear un informe utlizando el formato de la universidad guiese por el siguiente ejemplo:
 
 ```
-\documentclass{custom} % Reemplace "custom" con el nombre de su archivo .cls personalizado
+\documentclass{reporteuach} 
 
 % Puede agregar cualquier paquete adicional que necesite aquí
 \usepackage{lipsum} % Solo para fines de demostración, agregando texto de muestra
@@ -144,7 +144,6 @@ Para crear un articulo IEEE guiese por el siguiente ejemplo:
 
 ```
 \documentclass[conference]{IEEEtran}
-% Asegúrese de que el archivo IEEEtran.cls esté en la misma carpeta que su archivo .tex
 
 % Puede agregar cualquier paquete adicional que necesite aquí
 \usepackage{lipsum} % Solo para fines de demostración, agregando texto de muestra
