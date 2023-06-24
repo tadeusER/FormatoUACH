@@ -4,11 +4,18 @@
 
 Para utilizar el formato de clase personalizado (`.cls`) en un documento LaTeX (`.tex`), primero debes importar este repositorio en la carpeta deseada utilizando Git submódulos. A continuación, se describen los pasos para realizar este proceso:
 
+## Importar el repositorio en tu proyecto
+
+Abre la terminal en la carpeta de tu proyecto y ejecuta el siguiente comando para agregar el repositorio:
+```
+git clone https://github.com/tadeusER/FormatoUACH.git
+```
+
 ## 1. Importar el repositorio como un submódulo de Git
 
 Abre la terminal en la carpeta de tu proyecto y ejecuta el siguiente comando para agregar el repositorio como un submódulo de Git:
 ```
-git submodule add <URL_del_repositorio> <nombre_de_la_carpeta>
+git submodule add https://github.com/tadeusER/FormatoUACH.git <nombre_de_la_carpeta>
 ```
 
 Reemplaza `<URL_del_repositorio>` con la URL del repositorio que contiene el archivo `.cls` personalizado y `<nombre_de_la_carpeta>` con el nombre de la carpeta donde deseas importar el repositorio.
