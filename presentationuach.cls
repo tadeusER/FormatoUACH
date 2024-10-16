@@ -1,9 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{presentationuach}[2023/03/22 Custom Presentation class]
 
+% Opción para el logo personalizado
+\newcommand{\@customlogo}{formato/logos/logo_uach.png}
+\DeclareOption{logo}{\renewcommand{\@customlogo}{#1}}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions\relax
-
 \LoadClass{beamer}
 
 % Tema y colores personalizados
@@ -16,12 +19,14 @@
 \setbeamerfont{frametitle}{series=\bfseries}
 \setbeamerfont{block title}{series=\bfseries}
 
-% Logotipo personalizado en la es
-%quina superior derecha
-\setbeamertemplate{logo}{\includegraphics[height=1cm]{logo.png}}
-
-% Navegación en miniatura (opcional)
-%\setbeamertemplate{navigation symbols}{\insertslidenavigationsymbol}
+% Logotipo personalizado en la esquina superior derecha
+\setbeamertemplate{logo}{%
+  \IfFileExists{\@customlogo}{%
+    \includegraphics[height=1cm]{\@customlogo}%
+  }{%
+    \textbf{\textcolor{red}{Logo no encontrado}}%
+  }%
+}
 
 % Número de página en el pie de página
 \setbeamertemplate{footline}[page number]
@@ -34,4 +39,8 @@
 \setbeamercolor{block title}{fg=white, bg=blue!50!black}
 \setbeamercolor{block body}{fg=black, bg=blue!20!white}
 
+% Añadir ruta de búsqueda para gráficos
+\graphicspath{{./}{./logos/}{./formato/logos/}{formato/logos/}}
+
 \endinput
+
