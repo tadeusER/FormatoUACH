@@ -1,99 +1,79 @@
-% ============================================================
-%
-% Plantilla para reportes
-%
-% Author: Enrique Ramirez
-% Modified to include institute support
-%
-% ============================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{reportuach}
-\RequirePackage{kvoptions}[2010/12/23]
-\RequirePackage{ifthen}
+\ProvidesClass{reportuach}[2024/10/29 Formato de Reporte Personalizado]
 
-\SetupKeyvalOptions{
-	family=reportuach,
-	prefix=reportuach@
-}
+% Clase base
+\LoadClass[12pt]{article}
 
-% Existing options
-\DeclareStringOption[]{language}[english]
-\DeclareStringOption[]{thesis}[master]
-\DeclareStringOption[]{supervisor}[supervisor]
-\DeclareStringOption[]{chair}[statistics]
-\DeclareStringOption{license}
-\DeclareBoolOption{multiauthor}
-
-% New option for institute
-\DeclareStringOption[]{institute}[]
-
-\ProcessKeyvalOptions*
-\LoadClass[a4paper,12pt]{report}
-
-% Existing packages and settings...
-\usepackage[papersize={216mm,279mm},tmargin=30mm,bmargin=25mm,lmargin=30mm,rmargin=20mm, heightrounded=true]{geometry}
-\setlength{\headheight}{52pt}
-\usepackage[titles]{tocloft}
-\RequirePackage[T1]{fontenc}
-\usepackage{acronym}
+% Paquetes requeridos
+\RequirePackage[utf8x]{inputenc}
+\RequirePackage[spanish]{babel}
+\RequirePackage{amssymb,amsmath,amsthm,amsfonts}
+\RequirePackage{calc}
 \RequirePackage{graphicx}
-\RequirePackage{xcolor}
-\RequirePackage{tikz}
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{eurosym}
-\RequirePackage{algorithm}
-\RequirePackage[noend]{algpseudocode}
-\RequirePackage{algorithmicx}
-\RequirePackage{minted}
-\usemintedstyle{borland}
-\newcounter{lstlisting}
-\RequirePackage[hyphens]{url}
-\RequirePackage{hyperref}
-\RequirePackage{longtable}
+\RequirePackage{subfigure}
+\RequirePackage{gensymb}
+\RequirePackage{natbib}
+\RequirePackage{url}
+\RequirePackage{parskip}
+\RequirePackage{fancyhdr}
+\RequirePackage{vmargin}
 
-% New commands for institute
-\newcommand{\@institute}{}
-\newcommand{\institute}[1]{\def\@institute{#1}}
+% Definir el comando para la ruta de subdirectorio
+\newcommand{\subdirpath}{formato}
+\newcommand{\setsubdirpath}[1]{\renewcommand{\subdirpath}{#1}}
 
-% Redefine \maketitle to include institute
-\renewcommand{\maketitle}{%
-  \begin{titlepage}%
-    \let\footnotesize\small
-    \let\footnoterule\relax
-    \let \footnote \thanks
-    \null\vfil
-    \vskip 60\p@
-    \begin{center}%
-      {\LARGE \@title \par}%
-      \vskip 3em%
-      {\large
-       \lineskip .75em%
-        \begin{tabular}[t]{c}%
-          \@author
-        \end{tabular}\par}%
-      \vskip 1.5em%
-      {\large \@institute \par}%
-      \vskip 1.5em%
-      {\large \@date \par}%
-    \end{center}\par
-    \@thanks
-    \vfil\null
-  \end{titlepage}%
-  \setcounter{footnote}{0}%
-  \global\let\thanks\relax
-  \global\let\maketitle\relax
-  \global\let\@thanks\@empty
-  \global\let\@author\@empty
-  \global\let\@date\@empty
-  \global\let\@title\@empty
-  \global\let\@institute\@empty
-  \global\let\title\relax
-  \global\let\author\relax
-  \global\let\date\relax
-  \global\let\and\relax
-  \global\let\institute\relax
+% Configuración de rutas de gráficos
+\graphicspath{{\subdirpath/}}
+
+% Configuración de márgenes
+\setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+
+% Variables para almacenar título, tema y autor
+\def\thetitle{}
+\def\thetopic{}
+\def\theauthor{}
+
+% Definición de comandos personalizados
+\renewcommand{\title}[1]{\def\thetitle{#1}\def\@title{#1}}
+\newcommand{\ttitle}[1]{\title{#1}}
+\newcommand{\topic}[1]{\def\thetopic{#1}}
+\renewcommand{\author}[1]{\def\theauthor{#1}\def\@author{#1}}
+
+% Configuración del estilo de página
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+
+% Definición del comando para la portada
+\renewcommand{\maketitle}{
+    \begin{titlepage}
+        \centering
+        \vspace*{0.0 cm}
+        \includegraphics[scale = 0.3]{\subdirpath/logos/logo_uach.png}\\[1.0 cm]
+        \textsc{\LARGE Universidad Austral de Chile}\\[2.0 cm]
+        \textsc{\Large \thetopic}\\[0.5 cm]
+        \rule{\linewidth}{0.2 mm}\\[0.4 cm]
+        {\huge \bfseries \thetitle}\\[0.4 cm]
+        \rule{\linewidth}{0.2 mm}\\[1.5 cm]
+        
+        \begin{minipage}{0.4\textwidth}
+            \begin{center}
+                \large
+                \emph{Autor:}\\
+                \theauthor
+            \end{center}
+        \end{minipage}
+        
+        \vspace{2cm}
+        
+        {\large \@date}
+        
+        \vfill
+    \end{titlepage}
+    \tableofcontents
+    \pagebreak
 }
 
-% Rest of the class file...
-
+\endinput
