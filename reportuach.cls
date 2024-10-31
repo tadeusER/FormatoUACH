@@ -12,11 +12,11 @@
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{gensymb}
-\RequirePackage{natbib}
 \RequirePackage{url}
 \RequirePackage{parskip}
 \RequirePackage{fancyhdr}
 \RequirePackage{vmargin}
+\RequirePackage{float}
 
 % Definir el comando para la ruta de subdirectorio
 \newcommand{\subdirpath}{formato}
