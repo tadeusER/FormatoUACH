@@ -16,6 +16,7 @@
 \RequirePackage{parskip}
 \RequirePackage{fancyhdr}
 \RequirePackage{vmargin}
+\RequirePackage{subcaption}
 \RequirePackage{float}
 
 % Definir el comando para la ruta de subdirectorio
