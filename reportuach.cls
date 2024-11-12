@@ -10,15 +10,16 @@
 \RequirePackage{amssymb,amsmath,amsthm,amsfonts}
 \RequirePackage{calc}
 \RequirePackage{graphicx}
-\RequirePackage{subfigure}
+\RequirePackage{subfig}
 \RequirePackage{gensymb}
 \RequirePackage{url}
 \RequirePackage{parskip}
 \RequirePackage{fancyhdr}
+\RequirePackage{hyperref}
 \RequirePackage{vmargin}
 \RequirePackage{subcaption}
 \RequirePackage{float}
-
+\RequirePackage{csquotes}
 % Definir el comando para la ruta de subdirectorio
 \newcommand{\subdirpath}{formato}
 \newcommand{\setsubdirpath}[1]{\renewcommand{\subdirpath}{#1}}
