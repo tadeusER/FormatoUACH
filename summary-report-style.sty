@@ -1,0 +1,439 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% summary-report-style.sty
+%
+% Complementary style package for summary-report class
+% Provides advanced styling, color schemes, and custom environments
+%
+% Features:
+%   - Corporate color palettes
+%   - Custom highlight boxes
+%   - Progress indicators
+%   - Status badges
+%   - Statistics boxes
+%   - Timeline environments
+%
+% Version: 1.0
+% Date: 2024
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{summary-report-style}[2024/01/01 v1.0 Summary Report Style Package]
+
+%---------------------------------------------------------------
+% DEPENDENCIES
+%---------------------------------------------------------------
+\RequirePackage{xcolor}
+\RequirePackage{tcolorbox}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{calc}
+\RequirePackage{fontawesome5}
+
+%---------------------------------------------------------------
+% ENHANCED COLOR PALETTE
+%---------------------------------------------------------------
+% Primary colors
+\definecolor{primaryColor}{cmyk}{0.4,0.1,0,0.4}
+\definecolor{primaryLight}{cmyk}{0.15,0.05,0,0.1}
+\definecolor{primaryDark}{cmyk}{0.6,0.2,0.1,0.6}
+
+% Accent colors
+\definecolor{accentGreen}{RGB}{76,175,80}
+\definecolor{accentOrange}{RGB}{255,152,0}
+\definecolor{accentRed}{RGB}{244,67,54}
+\definecolor{accentBlue}{RGB}{33,150,243}
+\definecolor{accentPurple}{RGB}{156,39,176}
+
+% Neutral colors
+\definecolor{darkText}{RGB}{33,33,33}
+\definecolor{mediumText}{RGB}{117,117,117}
+\definecolor{lightText}{RGB}{189,189,189}
+\definecolor{lightGray}{RGB}{245,245,245}
+\definecolor{mediumGray}{RGB}{224,224,224}
+\definecolor{darkGray}{RGB}{66,66,66}
+
+% Status colors
+\definecolor{statusSuccess}{RGB}{76,175,80}
+\definecolor{statusWarning}{RGB}{255,193,7}
+\definecolor{statusDanger}{RGB}{244,67,54}
+\definecolor{statusInfo}{RGB}{33,150,243}
+
+%---------------------------------------------------------------
+% HIGHLIGHT BOX ENVIRONMENTS
+%---------------------------------------------------------------
+
+% Key Finding Box
+\newcommand{\keyfindings}[1]{
+  \vspace{0.2cm}
+  \begin{tcolorbox}[
+    colback=primaryLight!40,
+    colframe=primaryColor,
+    arc=4pt,
+    boxrule=1.5pt,
+    left=0.5cm,
+    right=0.5cm,
+    top=0.4cm,
+    bottom=0.4cm,
+    fontupper=\fontsize{9pt}{11pt}\selectfont
+  ]
+    \textbf{\color{primaryColor}Key Finding:} #1
+  \end{tcolorbox}
+  \vspace{0.2cm}
+}
+
+% Important Note Box
+\newcommand{\importantnote}[1]{
+  \vspace{0.2cm}
+  \begin{tcolorbox}[
+    colback=accentOrange!10,
+    colframe=accentOrange!70,
+    arc=4pt,
+    boxrule=1pt,
+    left=0.5cm,
+    right=0.5cm,
+    top=0.3cm,
+    bottom=0.3cm,
+    fontupper=\fontsize{8pt}{10pt}\selectfont
+  ]
+    {\small\textbf{⚠ Note:}} #1
+  \end{tcolorbox}
+  \vspace{0.2cm}
+}
+
+% Success/Completed Box
+\newcommand{\successbox}[1]{
+  \vspace{0.2cm}
+  \begin{tcolorbox}[
+    colback=statusSuccess!10,
+    colframe=statusSuccess,
+    arc=4pt,
+    boxrule=1pt,
+    left=0.5cm,
+    right=0.5cm,
+    top=0.3cm,
+    bottom=0.3cm,
+    fontupper=\fontsize{8pt}{10pt}\selectfont
+  ]
+    {\small✓ Success:} #1
+  \end{tcolorbox}
+  \vspace{0.2cm}
+}
+
+% Alert/Danger Box
+\newcommand{\alertbox}[1]{
+  \vspace{0.2cm}
+  \begin{tcolorbox}[
+    colback=statusDanger!10,
+    colframe=statusDanger,
+    arc=4pt,
+    boxrule=1.5pt,
+    left=0.5cm,
+    right=0.5cm,
+    top=0.3cm,
+    bottom=0.3cm,
+    fontupper=\fontsize{8pt}{10pt}\selectfont
+  ]
+    {\small\textbf{✕ Alert:}} #1
+  \end{tcolorbox}
+  \vspace{0.2cm}
+}
+
+% Information Box
+\newcommand{\infobox}[1]{
+  \vspace{0.2cm}
+  \begin{tcolorbox}[
+    colback=accentBlue!10,
+    colframe=accentBlue,
+    arc=4pt,
+    boxrule=1pt,
+    left=0.5cm,
+    right=0.5cm,
+    top=0.3cm,
+    bottom=0.3cm,
+    fontupper=\fontsize{8pt}{10pt}\selectfont
+  ]
+    {\small\textbf{ℹ Info:}} #1
+  \end{tcolorbox}
+  \vspace{0.2cm}
+}
+
+%---------------------------------------------------------------
+% STATUS BADGES
+%---------------------------------------------------------------
+
+\newcommand{\statusbadge}[2]{
+  \tikz[baseline=(badge.base)]{
+    \node[
+      rounded rectangle,
+      rounded rectangle arc length=180,
+      fill=#1,
+      text=white,
+      inner sep=0.3cm,
+      font=\small\bfseries
+    ] (badge) {#2};
+  }
+}
+
+\newcommand{\statusgreen}[1]{\statusbadge{statusSuccess}{#1}}
+\newcommand{\statusyellow}[1]{\statusbadge{statusWarning}{#1}}
+\newcommand{\statusred}[1]{\statusbadge{statusDanger}{#1}}
+\newcommand{\statusblue}[1]{\statusbadge{statusInfo}{#1}}
+
+%---------------------------------------------------------------
+% STATISTICS BOX
+%---------------------------------------------------------------
+
+\newcommand{\statsbox}[2]{
+  \begin{tcolorbox}[
+    colback=lightGray,
+    colframe=mediumGray,
+    arc=3pt,
+    boxrule=0.5pt,
+    left=0.3cm,
+    right=0.3cm,
+    top=0.2cm,
+    bottom=0.2cm,
+    halign=center
+  ]
+    \fontsize{12pt}{14pt}\selectfont\bfseries\color{primaryColor}#1\\
+    \fontsize{8pt}{10pt}\selectfont\color{darkText}#2
+  \end{tcolorbox}
+}
+
+%---------------------------------------------------------------
+% PROGRESS BAR
+%---------------------------------------------------------------
+
+\newcommand{\progressbar}[3]{
+  % #1: percentage (0-100)
+  % #2: label
+  % #3: optional color (default primaryColor)
+  \vspace{0.15cm}
+  \noindent
+  \textbf{\fontsize{8pt}{10pt}\selectfont #2}\\
+  \tikz{
+    \draw[lightGray, line width=0.3cm] (0,0) -- (3,0);
+    \draw[#3, line width=0.3cm] (0,0) -- ({3*#1/100},0);
+    \node[right, fontsize=8pt, inner sep=2pt] at (3.1,0) {\textbf{#1\%}};
+  }
+  \vspace{0.1cm}
+}
+
+\newcommand{\progressbardefault}[2]{\progressbar{#1}{#2}{primaryColor}}
+
+%---------------------------------------------------------------
+% MILESTONE TIMELINE
+%---------------------------------------------------------------
+
+\newenvironment{timeline}{
+  \begin{tcolorbox}[
+    colback=white,
+    colframe=primaryColor!50,
+    arc=3pt,
+    boxrule=1pt,
+    left=0.4cm,
+    right=0.4cm,
+    top=0.3cm,
+    bottom=0.3cm
+  ]
+    \fontsize{8pt}{10pt}\selectfont
+}{
+  \end{tcolorbox}
+}
+
+\newcommand{\milestone}[3]{
+  % #1: date
+  % #2: title
+  % #3: status (completed/in-progress/planned)
+  \vspace{0.1cm}
+  \noindent
+  \textbf{\small #1} \hfill
+  \ifx#3completed
+    \statusgreen{✓ Completed}
+  \else\ifx#3in-progress
+    \statusblue{⟳ In Progress}
+  \else
+    \statusyellow{○ Planned}
+  \fi\fi\\
+  \fontsize{8pt}{10pt}\selectfont #2\\
+}
+
+%---------------------------------------------------------------
+% METRICS AND KPI DISPLAY
+%---------------------------------------------------------------
+
+\newcommand{\metricpair}[4]{
+  % #1: metric name
+  % #2: metric value
+  % #3: trend (↑ or ↓ or →)
+  % #4: change percentage
+  \begin{minipage}[c]{0.48\linewidth}
+    \begin{tcolorbox}[
+      colback=lightGray!50,
+      colframe=primaryColor!30,
+      arc=2pt,
+      boxrule=0.5pt,
+      left=0.25cm,
+      right=0.25cm,
+      top=0.2cm,
+      bottom=0.2cm,
+      halign=left
+    ]
+      \fontsize{7pt}{9pt}\selectfont\color{mediumText}#1\\
+      \fontsize{11pt}{13pt}\selectfont\bfseries\color{primaryColor}#2\\
+      \fontsize{7pt}{9pt}\selectfont #3 \textcolor{accentGreen}{#4}
+    \end{tcolorbox}
+  \end{minipage}
+}
+
+%---------------------------------------------------------------
+% TWO-COLUMN METRIC DISPLAY
+%---------------------------------------------------------------
+
+\newcommand{\displaymetrics}[4]{
+  \vspace{0.2cm}
+  \noindent
+  \metricpair{#1}{#2}{↑}{+#3}\hfill
+  \metricpair{}{}{}{#4}
+  \vspace{0.2cm}
+}
+
+%---------------------------------------------------------------
+% PROJECT SUMMARY BOX
+%---------------------------------------------------------------
+
+\newenvironment{projectsummary}[1]{
+  \vspace{0.3cm}
+  \begin{tcolorbox}[
+    colback=primaryLight!20,
+    colframe=primaryColor,
+    arc=4pt,
+    boxrule=2pt,
+    left=0.5cm,
+    right=0.5cm,
+    top=0.4cm,
+    bottom=0.4cm,
+    title={#1},
+    titlerule=true,
+    timetitle=\bfseries\color{primaryColor}\fontsize{10pt}{12pt}\selectfont
+  ]
+    \fontsize{8pt}{10pt}\selectfont
+}{
+  \end{tcolorbox}
+  \vspace{0.3cm}
+}
+
+%---------------------------------------------------------------
+% COMPARISON TABLE FORMATTING
+%---------------------------------------------------------------
+
+\newcommand{\comparisonrow}[3]{
+  \textbf{\small #1} & \cellcolor{accentGreen!20} #2 & \cellcolor{accentRed!20} #3 \\
+}
+
+%---------------------------------------------------------------
+% BULLET POINT STYLES
+%---------------------------------------------------------------
+
+\newcommand{\checkmark}{\color{statusSuccess}{\textbf{✓}}\color{darkText} }
+\newcommand{\xmark}{\color{statusDanger}{\textbf{✕}}\color{darkText} }
+\newcommand{\pending}{\color{statusWarning}{\textbf{◐}}\color{darkText} }
+\newcommand{\arrow}{\color{primaryColor}{\textbf{→}}\color{darkText} }
+
+%---------------------------------------------------------------
+% CUSTOM LISTS WITH ICONS
+%---------------------------------------------------------------
+
+\newenvironment{checklist}{
+  \begin{enumerate}[
+    label={\checkmark},
+    left=0pt,
+    labelsep=0.3cm
+  ]
+}{
+  \end{enumerate}
+}
+
+\newenvironment{pendinglist}{
+  \begin{enumerate}[
+    label={\pending},
+    left=0pt,
+    labelsep=0.3cm
+  ]
+}{
+  \end{enumerate}
+}
+
+%---------------------------------------------------------------
+% SECTION DIVIDER
+%---------------------------------------------------------------
+
+\newcommand{\sectiondivider}{
+  \vspace{0.3cm}
+  \noindent
+  \tikz{
+    \draw[primaryColor, line width=1.5pt] (0,0) -- (1,0);
+    \draw[mediumGray, line width=1pt] (1,0) -- (\linewidth,0);
+  }
+  \vspace{0.3cm}
+}
+
+%---------------------------------------------------------------
+% HIGHLIGHT TEXT
+%---------------------------------------------------------------
+
+\newcommand{\highlight}[1]{
+  \colorbox{primaryColor!20}{\color{primaryColor}\bfseries #1}
+}
+
+\newcommand{\highlightred}[1]{
+  \colorbox{accentRed!20}{\color{accentRed}\bfseries #1}
+}
+
+\newcommand{\highlightgreen}[1]{
+  \colorbox{accentGreen!20}{\color{accentGreen}\bfseries #1}
+}
+
+\newcommand{\highlightorange}[1]{
+  \colorbox{accentOrange!20}{\color{accentOrange}\bfseries #1}
+}
+
+%---------------------------------------------------------------
+% FOOTER QUOTE/NOTE
+%---------------------------------------------------------------
+
+\newcommand{\footernote}[1]{
+  \vfill
+  \noindent
+  \begin{tcolorbox}[
+    colback=lightGray,
+    colframe=mediumGray,
+    arc=2pt,
+    boxrule=0.5pt,
+    left=0.3cm,
+    right=0.3cm,
+    top=0.2cm,
+    bottom=0.2cm
+  ]
+    \fontsize{7pt}{9pt}\selectfont\itshape #1
+  \end{tcolorbox}
+}
+
+%---------------------------------------------------------------
+% DECLARETHEOREMSTYLE WITH VISUAL ENHANCEMENT
+%---------------------------------------------------------------
+
+\tcbset{
+  theorem style=standard,
+  theorem name=Theorem,
+  theorem number in name,
+  colback=lightGray!50,
+  colframe=primaryColor,
+  fonttitle=\bfseries\color{primaryColor},
+  top=0.3cm,
+  bottom=0.3cm,
+  left=0.4cm,
+  right=0.4cm
+}
+
+\endinput

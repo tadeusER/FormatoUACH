@@ -1,0 +1,264 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% config.tex
+%
+% Configuration file for summary-report template
+% Customize colors, fonts, and visual elements here without modifying
+% the main class file
+%
+% Include this file with: \input{config.tex}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------------------------------------------------------
+% CORPORATE COLOR CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Primary corporate color (used for headers, emphasis)
+% Options: RGB{}, CMYK{}, or named colors
+% Uncomment the option that matches your brand
+\definecolor{primaryColor}{cmyk}{0.4,0.1,0,0.4}      % Default: Professional Blue
+% \definecolor{primaryColor}{RGB}{0,102,204}          % Alternative: Web Blue
+% \definecolor{primaryColor}{cmyk}{0,0.7,1,0}         % Alternative: Web Orange
+% \definecolor{primaryColor}{cmyk}{0.8,0.2,0,0}       % Alternative: Deep Blue
+
+% Secondary corporate color (used for accents and borders)
+\definecolor{secondaryColor}{cmyk}{0.2,0.1,0,0.1}    % Light shade of primary
+% \definecolor{secondaryColor}{RGB}{70,130,180}       % Alternative: Steel Blue
+
+% Accent colors for different purposes
+\definecolor{accentGreen}{RGB}{76,175,80}            % Success/Positive
+\definecolor{accentOrange}{RGB}{255,152,0}           % Warning/Caution
+\definecolor{accentRed}{RGB}{244,67,54}              % Alert/Danger
+\definecolor{accentBlue}{RGB}{33,150,243}            % Info/Additional
+
+%---------------------------------------------------------------
+% TEXT AND BACKGROUND COLORS
+%---------------------------------------------------------------
+
+% Primary text color (main document text)
+\definecolor{darkText}{RGB}{33,33,33}                % Dark gray, easy on eyes
+% \definecolor{darkText}{RGB}{0,0,0}                  % Pure black (alternative)
+
+% Secondary text color (less emphasis)
+\definecolor{mediumText}{RGB}{117,117,117}
+
+% Tertiary text color (minimal emphasis, such as footnotes)
+\definecolor{lightText}{RGB}{189,189,189}
+
+% Background colors
+\definecolor{lightGray}{RGB}{245,245,245}            % Very light background
+\definecolor{mediumGray}{RGB}{224,224,224}           % Medium background
+\definecolor{darkGray}{RGB}{66,66,66}                % Dark gray
+
+%---------------------------------------------------------------
+% STATUS AND SEMANTIC COLORS
+%---------------------------------------------------------------
+
+% Project status colors
+\definecolor{statusSuccess}{RGB}{76,175,80}          % Green: On track, completed
+\definecolor{statusWarning}{RGB}{255,193,7}          % Yellow: At risk, pending
+\definecolor{statusDanger}{RGB}{244,67,54}           % Red: Behind, alert
+\definecolor{statusInfo}{RGB}{33,150,243}            % Blue: Information
+
+%---------------------------------------------------------------
+% FONT CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Main font family (default: Latin Modern)
+% Options to uncomment:
+% \renewcommand{\familydefault}{\sfdefault}  % Sans-serif (cleaner look)
+% \renewcommand{\familydefault}{\rmdefault}  % Serif (traditional look)
+
+% Section title font (default: Sans-serif Bold)
+% \newfontfamily\sectionfont[Color=primaryColor]{Linux Biolinum O}
+
+% Monospace font for code (default: Computer Modern)
+% \renewcommand{\ttdefault}{qcr}  % Use Courier New instead
+
+%---------------------------------------------------------------
+% HEADER AND FOOTER CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Customize company name displayed in header
+\renewcommand{\companyname}{Your Company Name}
+
+% Customize report type displayed in header
+\renewcommand{\reporttype}{Executive Project Report}
+
+% Customize reporting period displayed in header
+\renewcommand{\reportperiod}{Semester 1, 2024}
+
+%---------------------------------------------------------------
+% PAGE LAYOUT CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Adjust page margins if needed (default: 3cm top, 2cm sides, 2cm bottom)
+% Uncomment and modify to change:
+% \usepackage{geometry}
+% \geometry{
+%   top=3cm,
+%   left=2.0cm,
+%   right=2.0cm,
+%   bottom=2cm,
+%   headheight=2cm,
+%   headsep=0cm,
+% }
+
+% Column separation width (default: 30pt)
+% \setlength{\columnsep}{35pt}  % Wider columns
+% \setlength{\columnsep}{25pt}  % Narrower columns
+
+% Paragraph indentation (default: 0pt - no indentation)
+% \setlength{\parindent}{12pt}  % Add indentation if preferred
+
+%---------------------------------------------------------------
+% SPACING CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Adjust spacing around sections (default values are moderate)
+% Format: \titlespacing*{command}{left spacing}{above spacing}{below spacing}
+
+% For tighter spacing throughout document:
+% \titlespacing*{\section}{0pt}{1.5ex}{1ex}
+% \titlespacing*{\subsection}{0pt}{1ex}{0.5ex}
+
+% For more breathing room:
+% \titlespacing*{\section}{0pt}{3ex}{2ex}
+% \titlespacing*{\subsection}{0pt}{2.5ex}{1.5ex}
+
+%---------------------------------------------------------------
+% BOX STYLING CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Adjust border width for highlight boxes
+% Options: thin (0.5pt), medium (1pt), thick (1.5pt)
+\tcbset{boxrule=1pt}  % Set default box border thickness
+
+% Adjust border radius for rounded corners
+% Options: 0pt (square), 3pt (slight), 6pt (rounded)
+\tcbset{arc=3pt}  % Default rounded corners
+
+% Adjust internal padding of boxes
+\tcbset{left=0.4cm,right=0.4cm,top=0.3cm,bottom=0.3cm}
+
+%---------------------------------------------------------------
+% TABLE STYLING CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Header row background color for tables
+% \rowcolor{primaryColor!20}  % Tinted with primary color
+
+% Adjust table column separation
+\setlength{\tabcolsep}{6pt}  % Horizontal spacing (default)
+% \setlength{\tabcolsep}{4pt}  % Tighter spacing
+% \setlength{\tabcolsep}{8pt}  % Wider spacing
+
+% Adjust table row height
+\renewcommand{\arraystretch}{1.2}  % Vertical spacing (default)
+% \renewcommand{\arraystretch}{1.4}  % More spacious
+% \renewcommand{\arraystretch}{1.0}  % Compact
+
+%---------------------------------------------------------------
+% LIST CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Adjust spacing between list items
+\setlist{nosep}  % No extra spacing (default)
+% \setlist{itemsep=0.3cm}  % Add spacing between items
+% \setlist{parsep=0.5cm}   % Add spacing between paragraphs in lists
+
+% Change bullet styles
+% Level 1: bullet, Level 2: circle, Level 3: dash
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=$\circ$}
+\setlist[itemize,3]{label=$-$}
+
+% Alternative bullet styles:
+% \setlist[itemize,1]{label=$\triangleright$}  % Triangle
+% \setlist[itemize,1]{label=$\star$}           % Star
+% \setlist[itemize,1]{label=$\checkmark$}      % Checkmark
+
+%---------------------------------------------------------------
+% BIBLIOGRAPHY CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Citation style
+% \bibliographystyle{plainnat}    % Author-year style (default)
+% \bibliographystyle{abbrvnat}    % Abbreviated author-year
+% \bibliographystyle{plain}       % Numbered style
+% \bibliographystyle{apalike}     % APA style
+
+% Adjust citation format
+% \setcitestyle{authoryear}       % Author-year citations
+% \setcitestyle{numbers}          % Numbered citations [1], [2], etc.
+% \setcitestyle{square}           % Square brackets [1]
+% \setcitestyle{open-bracket}     % Open bracket format
+
+%---------------------------------------------------------------
+% SPECIAL EFFECTS AND FEATURES
+%---------------------------------------------------------------
+
+% Enable or disable specific visual elements
+
+% Show/hide background watermark (if available)
+% \AddToShipoutPicture*{\BackgroundImage}
+
+% Enable draft mode (shows overfull boxes in red)
+% \documentclass[draft]{summary-report}
+
+% Enable line numbers (useful for review/editing)
+% \usepackage[mathlines]{lineno}
+% \linenumbers
+
+%---------------------------------------------------------------
+% CUSTOM COMMAND DEFINITIONS
+%---------------------------------------------------------------
+
+% Define shortcuts for frequently used terms
+\newcommand{\projectname}{Digital Transformation Initiative}
+\newcommand{\companyabbrev}{ACME}
+\newcommand{\reportyear}{2024}
+
+% Define custom emphasis commands
+% \newcommand{\important}[1]{\textbf{\color{primaryColor}#1}}
+% \newcommand{\warning}[1]{\textbf{\color{accentRed}#1}}
+% \newcommand{\success}[1]{\textbf{\color{accentGreen}#1}}
+
+%---------------------------------------------------------------
+% HYPERLINK CUSTOMIZATION
+%---------------------------------------------------------------
+
+% Link colors (default: primaryColor)
+% \hypersetup{
+%   linkcolor=primaryColor,
+%   citecolor=primaryColor,
+%   filecolor=primaryColor,
+%   urlcolor=accentBlue,
+%   pdftitle={Executive Report},
+%   pdfauthor={Author Name},
+%   pdfsubject={Project Report},
+%   pdfkeywords={project, report, executive}
+% }
+
+%---------------------------------------------------------------
+% PDF METADATA (if using hyperref)
+%---------------------------------------------------------------
+
+% Customize PDF properties when document is exported
+% Uncomment and modify as needed:
+% \hypersetup{
+%   pdftitle={Executive Project Report},
+%   pdfauthor={Project Manager Name},
+%   pdfsubject={Semester 1 2024 Report},
+%   pdfkeywords={project, report, executive, digital transformation}
+% }
+
+%---------------------------------------------------------------
+% END OF CONFIGURATION FILE
+%---------------------------------------------------------------
+
+% Note: This file is designed to be included with:
+%   \input{config.tex}
+%
+% Place this file in the same directory as your main document
+% and include it in your preamble after loading the document class.
