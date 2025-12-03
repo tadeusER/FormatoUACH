@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% summary-report-style-simple.sty - VERSIÓN SIMPLE
+% summary-report-style.sty - VERSIÓN CON SOPORTE BILINGÜE
 % Complementary style package for summary-report class
-% SIN modificaciones de tamaño de fuente
+% Soporte para inglés y español
 %
-% Version: 1.0 SIMPLE
-% Date: 2024
+% Version: 1.1 BILINGUAL
+% Date: 2025
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{formato/summary-report-style}[2024/01/01 v1.0 Summary Report Style Package]
+\ProvidesPackage{formato/summary-report-style}[2025/01/01 v1.1 Summary Report Style Package with Bilingual Support]
 
 %---------------------------------------------------------------
 % DEPENDENCIES
@@ -19,6 +19,37 @@
 \RequirePackage{tikz}
 \RequirePackage{pgfplots}
 \RequirePackage{calc}
+
+%---------------------------------------------------------------
+% DECLARE LANGUAGE OPTION (inherited from class)
+%---------------------------------------------------------------
+\newif\iflang@spanish
+\lang@spanishfalse
+\DeclareOption{spanish}{\lang@spanishtrue}
+\ProcessOptions\relax
+
+%---------------------------------------------------------------
+% LANGUAGE STRINGS DEFINITION
+%---------------------------------------------------------------
+\iflang@spanish
+  \def\lang@keyfindingtitle{Hallazgo Clave}
+  \def\lang@notetitle{Nota}
+  \def\lang@successtitle{Éxito}
+  \def\lang@alerttitle{Alerta}
+  \def\lang@infotitle{Información}
+  \def\lang@completedtext{Completado}
+  \def\lang@inprogresstext{En Progreso}
+  \def\lang@plannedtext{Planeado}
+\else
+  \def\lang@keyfindingtitle{Key Finding}
+  \def\lang@notetitle{Note}
+  \def\lang@successtitle{Success}
+  \def\lang@alerttitle{Alert}
+  \def\lang@infotitle{Info}
+  \def\lang@completedtext{Completed}
+  \def\lang@inprogresstext{In Progress}
+  \def\lang@plannedtext{Planned}
+\fi
 
 %---------------------------------------------------------------
 % ENHANCED COLOR PALETTE
@@ -46,7 +77,7 @@
 \definecolor{statusInfo}{RGB}{33,150,243}
 
 %---------------------------------------------------------------
-% HIGHLIGHT BOX ENVIRONMENTS - SIN CAMBIOS DE TAMAÑO
+% HIGHLIGHT BOX ENVIRONMENTS
 %---------------------------------------------------------------
 
 \newcommand{\keyfindings}[1]{
@@ -61,7 +92,7 @@
     top=0.3cm,
     bottom=0.3cm
   ]
-    \textbf{\color{primaryColor}Key Finding:} \color{darkText}#1
+    \textbf{\color{primaryColor}\lang@keyfindingtitle:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -78,7 +109,7 @@
     top=0.3cm,
     bottom=0.3cm
   ]
-    \textbf{\color{accentOrange}Note:} \color{darkText}#1
+    \textbf{\color{accentOrange}\lang@notetitle:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -95,7 +126,7 @@
     top=0.3cm,
     bottom=0.3cm
   ]
-    \textbf{\color{statusSuccess}Success:} \color{darkText}#1
+    \textbf{\color{statusSuccess}\lang@successtitle:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -112,7 +143,7 @@
     top=0.3cm,
     bottom=0.3cm
   ]
-    \textbf{\color{statusDanger}Alert:} \color{darkText}#1
+    \textbf{\color{statusDanger}\lang@alerttitle:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -129,7 +160,7 @@
     top=0.3cm,
     bottom=0.3cm
   ]
-    \textbf{\color{accentBlue}Info:} \color{darkText}#1
+    \textbf{\color{accentBlue}\lang@infotitle:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -198,11 +229,11 @@
   \noindent
   \textbf{\small #1} \hfill
   \ifx#3completed
-    \statusgreen{Completed}
+    \statusgreen{\lang@completedtext}
   \else\ifx#3in-progress
-    \statusblue{In Progress}
+    \statusblue{\lang@inprogresstext}
   \else
-    \statusyellow{Planned}
+    \statusyellow{\lang@plannedtext}
   \fi\fi\\
   \small #2\\
 }
