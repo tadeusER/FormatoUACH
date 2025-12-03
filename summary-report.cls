@@ -1,15 +1,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% summary-report.cls - VERSIÓN SIMPLE
+% summary-report.cls - VERSIÓN CON SOPORTE BILINGÜE
 % LaTeX document class for Professional Executive Project Reports
-% SIN modificaciones de tamaño de fuente
+% Soporte para inglés y español
 %
-% Version: 1.0 SIMPLE
-% Date: 2024
+% Version: 1.1 BILINGUAL
+% Date: 2025
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{formato/summary-report}[2024/01/01 v1.0 Professional Executive Project Report]
+\ProvidesClass{formato/summary-report}[2025/01/01 v1.1 Professional Executive Project Report with Bilingual Support]
+
+%---------------------------------------------------------------
+% DECLARE LANGUAGE OPTION
+%---------------------------------------------------------------
+\newif\iflang@spanish
+\lang@spanishfalse
+\DeclareOption{spanish}{\lang@spanishtrue}
+\ProcessOptions\relax
 
 %---------------------------------------------------------------
 % LOAD BASE CLASS AND OPTIONS
@@ -20,7 +28,11 @@
 % REQUIRED PACKAGES - FONTS AND LANGUAGE
 %---------------------------------------------------------------
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[english]{babel}
+\iflang@spanish
+  \RequirePackage[spanish]{babel}
+\else
+  \RequirePackage[english]{babel}
+\fi
 \RequirePackage[T1]{fontenc}
 \RequirePackage[scaled]{helvet}
 \RequirePackage{textcomp}
@@ -102,6 +114,33 @@
 \bibliographystyle{plainnat}
 
 %---------------------------------------------------------------
+% LANGUAGE STRINGS DEFINITION
+%---------------------------------------------------------------
+\iflang@spanish
+  \def\lang@authors{Autores}
+  \def\lang@projectmanager{Gestor de Proyecto}
+  \def\lang@teamleader{Líder del Equipo}
+  \def\lang@status{Estado}
+  \def\lang@projectcode{Código de Proyecto}
+  \def\lang@keyachievements{Logros Clave}
+  \def\lang@of{de}
+  \def\lang@completedtext{Completado}
+  \def\lang@inprogresstext{En Progreso}
+  \def\lang@plannedtext{Planeado}
+\else
+  \def\lang@authors{Authors}
+  \def\lang@projectmanager{Project Manager}
+  \def\lang@teamleader{Team Leader}
+  \def\lang@status{Status}
+  \def\lang@projectcode{Project Code}
+  \def\lang@keyachievements{Key Achievements}
+  \def\lang@of{of}
+  \def\lang@completedtext{Completed}
+  \def\lang@inprogresstext{In Progress}
+  \def\lang@plannedtext{Planned}
+\fi
+
+%---------------------------------------------------------------
 % HEADER AND FOOTER
 %---------------------------------------------------------------
 \RequirePackage{fancyhdr}
@@ -120,7 +159,7 @@
   \companyname \hfill \reporttype \hfill \reportperiod
 }
 
-\cfoot{\small\thepage~of~\pageref{LastPage}}
+\cfoot{\small\thepage~\lang@of~\pageref{LastPage}}
 
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0.5pt}
@@ -131,7 +170,7 @@
 \RequirePackage{tcolorbox}
 
 %---------------------------------------------------------------
-% SECTION FORMATTING - SIN CAMBIOS DE TAMAÑO
+% SECTION FORMATTING
 %---------------------------------------------------------------
 \RequirePackage{titlesec}
 \RequirePackage{titletoc}
@@ -182,10 +221,17 @@
 % THEOREM STYLES
 %---------------------------------------------------------------
 \theoremstyle{definition}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
+\iflang@spanish
+  \newtheorem{theorem}{Teorema}[section]
+  \newtheorem{corollary}[theorem]{Corolario}
+  \newtheorem{definition}[theorem]{Definición}
+  \newtheorem{remark}[theorem]{Observación}
+\else
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{definition}[theorem]{Definition}
+  \newtheorem{remark}[theorem]{Remark}
+\fi
 
 %---------------------------------------------------------------
 % CUSTOM TABLE MACROS
@@ -261,9 +307,9 @@
     % Only show project code if not empty
     \if\relax\detokenize\expandafter{\@projectcode}\relax
     \else
-      \textbf{Project Code:} \@projectcode \quad
+      \textbf{\lang@projectcode:} \@projectcode \quad
     \fi
-    \textbf{Status:} \textcolor{primaryColor}{\textbf{\@projectstatus}}\\
+    \textbf{\lang@status:} \textcolor{primaryColor}{\textbf{\@projectstatus}}\\
     
     \vspace{0.2cm}
     % Show authors/managers only if provided
@@ -272,7 +318,7 @@
       \if\relax\detokenize\expandafter{\@projectmanager}\relax
       \else
         \small\color{darkText}
-        \textbf{Project Manager:} \@projectmanager
+        \textbf{\lang@projectmanager:} \@projectmanager
       \fi
       \if\relax\detokenize\expandafter{\@teamleader}\relax
       \else
@@ -280,11 +326,11 @@
         \else
           \quad
         \fi
-        \textbf{Team Leader:} \@teamleader
+        \textbf{\lang@teamleader:} \@teamleader
       \fi
     \else
       \small\color{darkText}
-      \textbf{Authors:} \@authorlist
+      \textbf{\lang@authors:} \@authorlist
     \fi
     
     \vspace{0.3cm}
@@ -293,7 +339,7 @@
     \if\relax\detokenize\expandafter{\@keyachievements}\relax
     \else
       \vspace{0.2cm}
-      \small\bfseries\color{primaryColor}Key Achievements:\\
+      \small\bfseries\color{primaryColor}\lang@keyachievements:\\
       \small\color{darkText}\@keyachievements
     \fi
   \end{center}
