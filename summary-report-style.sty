@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% summary-report-style.sty - IMPROVED VERSION
-%
+% summary-report-style-simple.sty - VERSIÓN SIMPLE
 % Complementary style package for summary-report class
+% SIN modificaciones de tamaño de fuente
 %
-% Version: 1.1 IMPROVED WITH TABLE SCALING
+% Version: 1.0 SIMPLE
 % Date: 2024
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{summary-report-style}[2024/01/01 v1.1 Summary Report Style Package]
+\ProvidesPackage{formato/summary-report-style}[2024/01/01 v1.0 Summary Report Style Package]
 
 %---------------------------------------------------------------
 % DEPENDENCIES
@@ -46,45 +46,22 @@
 \definecolor{statusInfo}{RGB}{33,150,243}
 
 %---------------------------------------------------------------
-% TABLE SCALING FOR TWO-COLUMN LAYOUT
-%---------------------------------------------------------------
-
-% Ambiente para tablas con tamaño automático adaptado al ancho de columna
-\newenvironment{scaledtable}[1][1.0]{
-  \fontsize{8pt}{10pt}\selectfont
-  \renewcommand{\arraystretch}{1.2}
-  \scalebox{#1}{
-    \begin{tabular}
-}{
-    \end{tabular}
-  }
-}
-
-% Comando para tablas pequeñas que caben en una columna
-\newcommand{\compactTable}[1]{
-  \vspace{0.1cm}
-  \fontsize{7pt}{9pt}\selectfont
-  #1
-  \vspace{0.1cm}
-}
-
-%---------------------------------------------------------------
-% HIGHLIGHT BOX ENVIRONMENTS
+% HIGHLIGHT BOX ENVIRONMENTS - SIN CAMBIOS DE TAMAÑO
 %---------------------------------------------------------------
 
 \newcommand{\keyfindings}[1]{
   \vspace{0.2cm}
   \begin{tcolorbox}[
-    colback=primaryColor!20,
+    colback=primaryColor!15,
     colframe=primaryColor,
-    arc=4pt,
+    arc=3pt,
     boxrule=1.5pt,
     left=0.5cm,
     right=0.5cm,
-    top=0.4cm,
-    bottom=0.4cm
+    top=0.3cm,
+    bottom=0.3cm
   ]
-    \textbf{\color{primaryColor}Key Finding:} #1
+    \textbf{\color{primaryColor}Key Finding:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -93,15 +70,15 @@
   \vspace{0.2cm}
   \begin{tcolorbox}[
     colback=accentOrange!10,
-    colframe=accentOrange!70,
-    arc=4pt,
+    colframe=accentOrange!60,
+    arc=3pt,
     boxrule=1pt,
     left=0.5cm,
     right=0.5cm,
     top=0.3cm,
     bottom=0.3cm
   ]
-    {\small\textbf{Note:}} #1
+    \textbf{\color{accentOrange}Note:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -110,15 +87,15 @@
   \vspace{0.2cm}
   \begin{tcolorbox}[
     colback=statusSuccess!10,
-    colframe=statusSuccess,
-    arc=4pt,
+    colframe=statusSuccess!60,
+    arc=3pt,
     boxrule=1pt,
     left=0.5cm,
     right=0.5cm,
     top=0.3cm,
     bottom=0.3cm
   ]
-    {\small Success:} #1
+    \textbf{\color{statusSuccess}Success:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -127,15 +104,15 @@
   \vspace{0.2cm}
   \begin{tcolorbox}[
     colback=statusDanger!10,
-    colframe=statusDanger,
-    arc=4pt,
+    colframe=statusDanger!60,
+    arc=3pt,
     boxrule=1.5pt,
     left=0.5cm,
     right=0.5cm,
     top=0.3cm,
     bottom=0.3cm
   ]
-    {\small\textbf{Alert:}} #1
+    \textbf{\color{statusDanger}Alert:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -144,15 +121,15 @@
   \vspace{0.2cm}
   \begin{tcolorbox}[
     colback=accentBlue!10,
-    colframe=accentBlue,
-    arc=4pt,
+    colframe=accentBlue!60,
+    arc=3pt,
     boxrule=1pt,
     left=0.5cm,
     right=0.5cm,
     top=0.3cm,
     bottom=0.3cm
   ]
-    {\small\textbf{Info:}} #1
+    \textbf{\color{accentBlue}Info:} \color{darkText}#1
   \end{tcolorbox}
   \vspace{0.2cm}
 }
@@ -179,40 +156,19 @@
 \newcommand{\statusblue}[1]{\statusbadge{statusInfo}{#1}}
 
 %---------------------------------------------------------------
-% STATISTICS BOX
-%---------------------------------------------------------------
-
-\newcommand{\statsbox}[2]{
-  \begin{tcolorbox}[
-    colback=lightGray,
-    colframe=mediumGray,
-    arc=3pt,
-    boxrule=0.5pt,
-    left=0.3cm,
-    right=0.3cm,
-    top=0.2cm,
-    bottom=0.2cm,
-    halign=center
-  ]
-    \fontsize{12pt}{14pt}\selectfont\bfseries\color{primaryColor}#1\\
-    \fontsize{8pt}{10pt}\selectfont\color{darkText}#2
-  \end{tcolorbox}
-}
-
-%---------------------------------------------------------------
 % PROGRESS BAR
 %---------------------------------------------------------------
 
 \newcommand{\progressbar}[3]{
-  \vspace{0.15cm}
-  \noindent
-  \textbf{\fontsize{8pt}{10pt}\selectfont #2}\\
-  \tikz[baseline]{
-    \draw[lightGray, line width=0.3cm] (0,0) -- (3,0);
-    \draw[#3, line width=0.3cm] (0,0) -- ({3*#1/100},0);
-    \node[right, inner sep=2pt] at (3.1,0) {\textbf{#1\%}};
-  }
   \vspace{0.1cm}
+  \noindent
+  \textbf{#2}\\
+  \tikz[baseline]{
+    \draw[lightGray, line width=0.25cm] (0,0) -- (3,0);
+    \draw[#3, line width=0.25cm] (0,0) -- ({3*#1/100},0);
+    \node[right, inner sep=2pt] at (3.1,0) {\small\bfseries#1\%};
+  }
+  \vspace{0.05cm}
 }
 
 \newcommand{\progressbardefault}[2]{\progressbar{#1}{#2}{primaryColor}}
@@ -224,15 +180,15 @@
 \newenvironment{timeline}{
   \begin{tcolorbox}[
     colback=white,
-    colframe=primaryColor!50,
+    colframe=primaryColor!40,
     arc=3pt,
     boxrule=1pt,
     left=0.4cm,
     right=0.4cm,
-    top=0.3cm,
-    bottom=0.3cm
+    top=0.2cm,
+    bottom=0.2cm
   ]
-    \fontsize{8pt}{10pt}\selectfont
+    \small
 }{
   \end{tcolorbox}
 }
@@ -248,7 +204,7 @@
   \else
     \statusyellow{Planned}
   \fi\fi\\
-  \fontsize{8pt}{10pt}\selectfont #2\\
+  \small #2\\
 }
 
 %---------------------------------------------------------------
@@ -268,55 +224,11 @@
       bottom=0.2cm,
       halign=left
     ]
-      \fontsize{7pt}{9pt}\selectfont\color{mediumText}#1\\
-      \fontsize{11pt}{13pt}\selectfont\bfseries\color{primaryColor}#2\\
-      \fontsize{7pt}{9pt}\selectfont #3 \textcolor{accentGreen}{#4}
+      \small\color{mediumText}#1\\
+      \normalsize\bfseries\color{primaryColor}#2\\
+      \small #3 \textcolor{accentGreen}{#4}
     \end{tcolorbox}
   \end{minipage}
-}
-
-%---------------------------------------------------------------
-% TWO-COLUMN METRIC DISPLAY
-%---------------------------------------------------------------
-
-\newcommand{\displaymetrics}[4]{
-  \vspace{0.2cm}
-  \noindent
-  \metricpair{#1}{#2}{$\uparrow$}{+#3}\hfill
-  \metricpair{}{}{}{#4}
-  \vspace{0.2cm}
-}
-
-%---------------------------------------------------------------
-% PROJECT SUMMARY BOX
-%---------------------------------------------------------------
-
-\newenvironment{projectsummary}[1]{
-  \vspace{0.3cm}
-  \begin{tcolorbox}[
-    colback=primaryColor!20,
-    colframe=primaryColor,
-    arc=4pt,
-    boxrule=2pt,
-    left=0.5cm,
-    right=0.5cm,
-    top=0.4cm,
-    bottom=0.4cm,
-    title={#1},
-    titlerule=true
-  ]
-    \fontsize{8pt}{10pt}\selectfont
-}{
-  \end{tcolorbox}
-  \vspace{0.3cm}
-}
-
-%---------------------------------------------------------------
-% COMPARISON TABLE FORMATTING
-%---------------------------------------------------------------
-
-\newcommand{\comparisonrow}[3]{
-  \textbf{\small #1} & \cellcolor{accentGreen!20} #2 & \cellcolor{accentRed!20} #3 \\
 }
 
 %---------------------------------------------------------------
@@ -342,36 +254,12 @@
   \end{enumerate}
 }
 
-\newenvironment{pendinglist}{
-  \begin{enumerate}[
-    label={\pending},
-    left=0pt,
-    labelsep=0.3cm
-  ]
-}{
-  \end{enumerate}
-}
-
-%---------------------------------------------------------------
-% SECTION DIVIDER
-%---------------------------------------------------------------
-
-\newcommand{\sectiondivider}{
-  \vspace{0.3cm}
-  \noindent
-  \tikz{
-    \draw[primaryColor, line width=1.5pt] (0,0) -- (1,0);
-    \draw[mediumGray, line width=1pt] (1,0) -- (\linewidth,0);
-  }
-  \vspace{0.3cm}
-}
-
 %---------------------------------------------------------------
 % HIGHLIGHT TEXT
 %---------------------------------------------------------------
 
 \newcommand{\highlight}[1]{
-  \colorbox{primaryColor!20}{\color{primaryColor}\bfseries #1}
+  \colorbox{primaryColor!15}{\color{primaryColor}\bfseries #1}
 }
 
 \newcommand{\highlightred}[1]{
@@ -380,44 +268,6 @@
 
 \newcommand{\highlightgreen}[1]{
   \colorbox{accentGreen!20}{\color{accentGreen}\bfseries #1}
-}
-
-\newcommand{\highlightorange}[1]{
-  \colorbox{accentOrange!20}{\color{accentOrange}\bfseries #1}
-}
-
-%---------------------------------------------------------------
-% FOOTER QUOTE/NOTE
-%---------------------------------------------------------------
-
-\newcommand{\footernote}[1]{
-  \vfill
-  \noindent
-  \begin{tcolorbox}[
-    colback=lightGray,
-    colframe=mediumGray,
-    arc=2pt,
-    boxrule=0.5pt,
-    left=0.3cm,
-    right=0.3cm,
-    top=0.2cm,
-    bottom=0.2cm
-  ]
-    \fontsize{7pt}{9pt}\selectfont\itshape #1
-  \end{tcolorbox}
-}
-
-%---------------------------------------------------------------
-% THEOREM STYLING
-%---------------------------------------------------------------
-
-\tcbset{
-  colback=lightGray!50,
-  colframe=primaryColor,
-  left=0.4cm,
-  right=0.4cm,
-  top=0.3cm,
-  bottom=0.3cm
 }
 
 \endinput
