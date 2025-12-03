@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% summary-report.cls - SIMPLIFIED AND FIXED VERSION
-% 
+% summary-report.cls - VERSIÓN SIMPLE
 % LaTeX document class for Professional Executive Project Reports
+% SIN modificaciones de tamaño de fuente
 %
-% Version: 1.1 FIXED WITH LOGO AND TABLE ADJUSTMENTS
+% Version: 1.0 SIMPLE
 % Date: 2024
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{formato/summary-report}[2024/01/01 v1.1 Professional Executive Project Report]
+\ProvidesClass{formato/summary-report}[2024/01/01 v1.0 Professional Executive Project Report]
 
 %---------------------------------------------------------------
 % LOAD BASE CLASS AND OPTIONS
@@ -36,6 +36,7 @@
 
 \setlength{\columnsep}{20pt}
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{0.3em}
 
 %---------------------------------------------------------------
 % COLOR PACKAGES
@@ -115,11 +116,11 @@
 
 \chead{
   \centering
-  \fontsize{8pt}{10pt}\selectfont\bfseries
+  \small\bfseries
   \companyname \hfill \reporttype \hfill \reportperiod
 }
 
-\cfoot{\fontsize{8pt}{10pt}\selectfont\thepage~of~\pageref{LastPage}}
+\cfoot{\small\thepage~of~\pageref{LastPage}}
 
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0.5pt}
@@ -130,43 +131,43 @@
 \RequirePackage{tcolorbox}
 
 %---------------------------------------------------------------
-% SECTION FORMATTING
+% SECTION FORMATTING - SIN CAMBIOS DE TAMAÑO
 %---------------------------------------------------------------
 \RequirePackage{titlesec}
 \RequirePackage{titletoc}
 
 \titleformat{\section}
-  {\color{primaryColor}\normalfont\Large\bfseries}
+  {\color{primaryColor}\bfseries\large}
   {\color{primaryColor}\thesection.}
   {1em}
   {}
 
 \titlespacing*{\section}
   {0pt}
-  {2.5ex plus 1ex minus 0.2ex}
-  {1.5ex plus 0.2ex}
+  {0.5em}
+  {0.3em}
 
 \titleformat{\subsection}
-  {\color{primaryColor}\normalfont\large\bfseries}
+  {\color{primaryColor}\bfseries}
   {\color{primaryColor}\thesubsection.}
   {1em}
   {}
 
 \titlespacing*{\subsection}
   {0pt}
-  {2ex plus 0.5ex minus 0.2ex}
-  {1ex plus 0.2ex}
+  {0.3em}
+  {0.2em}
 
 \titleformat{\subsubsection}
-  {\color{primaryColor}\normalfont\normalsize\bfseries}
+  {\color{primaryColor}\bfseries}
   {\color{primaryColor}\thesubsubsection.}
   {0.8em}
   {}
 
 \titlespacing*{\subsubsection}
   {0pt}
-  {1.5ex plus 0.3ex minus 0.2ex}
-  {0.8ex plus 0.2ex}
+  {0.2em}
+  {0.1em}
 
 %---------------------------------------------------------------
 % LIST STYLES
@@ -214,20 +215,24 @@
 \newcommand{\keyachievements}[1]{\def\@keyachievements{#1}}
 \newcommand{\nextmilestones}[1]{\def\@nextmilestones{#1}}
 \newcommand{\projectstatus}[1]{\def\@projectstatus{#1}}
+\newcommand{\reporttypeperiod}[1]{\def\@reporttypeperiod{#1}}
+\newcommand{\authorlist}[1]{\def\@authorlist{#1}}
 
 \newcommand{\setreportperiod}[1]{\renewcommand{\reportperiod}{#1}}
 
 % Set default values
 \def\@projecttitle{Project Title}
-\def\@projectcode{PRJ-2024-001}
+\def\@projectcode{}
 \def\@projectperiod{Semester 1, 2024}
-\def\@projectmanager{Project Manager}
-\def\@teamleader{Team Leader}
+\def\@projectmanager{}
+\def\@teamleader{}
 \def\@companylogo{}
 \def\@companybrand{Company Name}
 \def\@keyachievements{}
 \def\@nextmilestones{}
 \def\@projectstatus{On Track}
+\def\@reporttypeperiod{Semester 1, 2024}
+\def\@authorlist{}
 
 %---------------------------------------------------------------
 % CUSTOM TITLE PAGE
@@ -242,22 +247,45 @@
       \vspace{0.3cm}
     \fi
     
-    \fontsize{14pt}{16pt}\selectfont\bfseries\color{primaryColor}\reporttype\\
-    \fontsize{10pt}{12pt}\selectfont\color{darkText}\@projectperiod
+    \large\bfseries\color{primaryColor}\reporttype\\
+    \normalsize\bfseries\color{darkText}\@reporttypeperiod
     
     \vspace{0.5cm}
     \noindent\hrulefill\par
     
     \vspace{0.3cm}
-    \fontsize{18pt}{22pt}\selectfont\bfseries\color{primaryColor}\@projecttitle\\
+    \Large\bfseries\color{primaryColor}\@projecttitle\\
     
     \vspace{0.3cm}
-    \fontsize{10pt}{12pt}\selectfont\color{mediumGray}
-    Project Code: \@projectcode \quad Status: \textcolor{primaryColor}{\@projectstatus}\\
+    \normalsize\color{darkText}
+    % Only show project code if not empty
+    \if\relax\detokenize\expandafter{\@projectcode}\relax
+    \else
+      \textbf{Project Code:} \@projectcode \quad
+    \fi
+    \textbf{Status:} \textcolor{primaryColor}{\textbf{\@projectstatus}}\\
     
     \vspace{0.2cm}
-    \fontsize{9pt}{11pt}\selectfont\color{darkText}
-    Project Manager: \@projectmanager \quad Team Leader: \@teamleader
+    % Show authors/managers only if provided
+    \if\relax\detokenize\expandafter{\@authorlist}\relax
+      % Check if we have at least projectmanager or teamleader
+      \if\relax\detokenize\expandafter{\@projectmanager}\relax
+      \else
+        \small\color{darkText}
+        \textbf{Project Manager:} \@projectmanager
+      \fi
+      \if\relax\detokenize\expandafter{\@teamleader}\relax
+      \else
+        \if\relax\detokenize\expandafter{\@projectmanager}\relax
+        \else
+          \quad
+        \fi
+        \textbf{Team Leader:} \@teamleader
+      \fi
+    \else
+      \small\color{darkText}
+      \textbf{Authors:} \@authorlist
+    \fi
     
     \vspace{0.3cm}
     \noindent\hrulefill\par
@@ -265,11 +293,11 @@
     \if\relax\detokenize\expandafter{\@keyachievements}\relax
     \else
       \vspace{0.2cm}
-      \fontsize{9pt}{11pt}\selectfont\bfseries\color{primaryColor}Key Achievements:\\
-      \fontsize{8pt}{10pt}\selectfont\color{darkText}\@keyachievements
+      \small\bfseries\color{primaryColor}Key Achievements:\\
+      \small\color{darkText}\@keyachievements
     \fi
   \end{center}
-  \vspace{0.5cm}
+  \vspace{0.3cm}
 }
 
 %---------------------------------------------------------------
