@@ -111,7 +111,7 @@
 
 \RequirePackage{cleveref}
 \RequirePackage[square, numbers, sort&compress]{natbib}
-\bibliographystyle{plainnat}
+\bibliographystyle{IEEEtran}
 
 %---------------------------------------------------------------
 % LANGUAGE STRINGS DEFINITION
